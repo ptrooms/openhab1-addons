@@ -21,3 +21,15 @@ itemDump.txt
 # IntelliJ files
 **/.idea
 **/*.iml
+# ignore eclips
+# *.project
+# **/.settings/org.eclipse.core.resources.prefs
+# **/.settings/org.eclipse.m2e.core.prefs
+.vscode/
+.classpath
+.project
+.settings
+.idea
+.metadata
+*.iml
+*.ipr
