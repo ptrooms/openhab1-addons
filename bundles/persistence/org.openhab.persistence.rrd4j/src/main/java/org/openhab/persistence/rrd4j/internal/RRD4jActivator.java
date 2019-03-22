@@ -29,6 +29,7 @@ public final class RRD4jActivator implements BundleActivator {
     @Override
     public void start(BundleContext bc) throws Exception {
         logger.debug("RRD4j persistence bundle has been started.");
+        logger.error("RRD4j persistence bundle is changed by ptrooms.");
     }
 
     /**
