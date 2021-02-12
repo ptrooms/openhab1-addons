@@ -679,7 +679,7 @@ public class Tr064Comm {
                 }).build();
         addItemMap(imMacOnline);
 
-        addItemMap(new MultiItemMap(Arrays.asList("modelName", "manufacturerName", "softwareVersion", "serialNumber"),
+        addItemMap(new MultiItemMap(Arrays.asList("modelName", "manufacturerName", "softwareVersion", "serialNumber", "upTime"),
                 "GetInfo", "urn:DeviceInfo-com:serviceId:DeviceInfo1", name -> "New" + WordUtils.capitalize(name)));
         addItemMap(SingleItemMap.builder().itemCommand("wanip")
                 .serviceId("urn:WANPPPConnection-com:serviceId:WANPPPConnection1")
@@ -687,6 +687,8 @@ public class Tr064Comm {
         addItemMap(SingleItemMap.builder().itemCommand("externalWanip")
                 .serviceId("urn:WANIPConnection-com:serviceId:WANIPConnection1")
                 .itemArgumentName("NewExternalIPAddress").readServiceCommand("GetExternalIPAddress").build());
+
+
 
         // WAN Status
         addItemMap(new MultiItemMap(
