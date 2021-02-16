@@ -678,9 +678,10 @@ public class Tr064Comm {
                     }
                 }).build();
         addItemMap(imMacOnline);
-
+        // uptime added by ptro 12feb21 00u43
         addItemMap(new MultiItemMap(Arrays.asList("modelName", "manufacturerName", "softwareVersion", "serialNumber", "upTime"),
                 "GetInfo", "urn:DeviceInfo-com:serviceId:DeviceInfo1", name -> "New" + WordUtils.capitalize(name)));
+                
         addItemMap(SingleItemMap.builder().itemCommand("wanip")
                 .serviceId("urn:WANPPPConnection-com:serviceId:WANPPPConnection1")
                 .itemArgumentName("NewExternalIPAddress").readServiceCommand("GetExternalIPAddress").build());
