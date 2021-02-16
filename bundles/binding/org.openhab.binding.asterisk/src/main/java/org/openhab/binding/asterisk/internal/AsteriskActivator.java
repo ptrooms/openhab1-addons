@@ -28,6 +28,7 @@ public class AsteriskActivator implements BundleActivator {
      */
     @Override
     public void start(BundleContext bc) throws Exception {
+        logger.error("ptro: Asterisk binding has been started.");
         logger.debug("Asterisk binding has been started.");
     }
 
@@ -37,6 +38,7 @@ public class AsteriskActivator implements BundleActivator {
     @Override
     public void stop(BundleContext bc) throws Exception {
         logger.debug("Asterisk binding has been stopped.");
+        logger.error("ptro: Asterisk binding has been started.");
     }
 
 }
