@@ -3,4 +3,6 @@
 This repository contains add-ons that are using openHAB 1.x APIs.
 Earlier branches of this repo also contain the 1.x runtime and designer, which are no longer maintained.
 
+21feb21: updated bundles/binding/org.openhab.binding.fritzboxtr064/src/main/java/org/openhab/binding/fritzboxtr064/internal to support newUptime.
+
 Note that all information about openHAB itself, the IDE setup and the contribution processes can be found in the [openhab-distro](https://github.com/openhab/openhab-distro) project, so please go there for any further details!
