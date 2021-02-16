@@ -1,9 +1,7 @@
 ## openHAB 1 Add-ons
 
 This repository contains add-ons that are using openHAB 1.x APIs which are no longer maintained by the openhab project.
-The fork here is used to maintain local updates.
-21feb21: updated bundles/binding/org.openhab.binding.fritzboxtr064/src/main/java/org/openhab/binding/fritzboxtr064/internal to support newUptime.
-
+The fork here is used to maintain local updates in branch ptro240
 
 Earlier branches of this repo also contain the 1.x runtime and designer, which are no longer maintained.
 
