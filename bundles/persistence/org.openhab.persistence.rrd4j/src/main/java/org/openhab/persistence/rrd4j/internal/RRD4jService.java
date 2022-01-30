@@ -149,6 +149,8 @@ public class RRD4jService implements QueryablePersistenceService {
                     logger.debug("Stored '{}' with state '{}' in rrd4j database", name, state);
                 }
             } catch (IllegalArgumentException e) {
+
+				// check message in rrd source /home/pafoxp/code-rrd4j/src/main/java/org/rrd4j/core/RrdDb.java
                 if (e.getMessage().contains("at least one second step is required")) {
 
                     // we try to store the value one second later
@@ -362,7 +364,7 @@ public class RRD4jService implements QueryablePersistenceService {
 
         // add default configurations
         RrdDefConfig defaultNumeric = new RrdDefConfig("default_numeric");
-        defaultNumeric.setDef("GAUGE,60,U,U,60");
+        defaultNumeric.setDef("GAUGE,7200,U,U,60");							// ptro: 20jan22 heartbeat set on 2 hours
         defaultNumeric.addArchives(
                 "AVERAGE,0.5,1,480:AVERAGE,0.5,4,360:AVERAGE,0.5,14,644:AVERAGE,0.5,60,720:AVERAGE,0.5,720,730:AVERAGE,0.5,10080,520");
         rrdDefs.put("default_numeric", defaultNumeric);
@@ -378,6 +380,11 @@ public class RRD4jService implements QueryablePersistenceService {
             return;
         }
 
+
+		// ptro doc:
+		// Sum.archives="TOTAL,.5,1,480:TOTAL,.5,3,360:TOTAL,.5,14,644:TOTAL,.5,60,720:TOTAL,.5,720,730:TOTAL,.5,10080,520"
+		// Sum.def="GAUGE,60,U,U,60"
+		// Sum.items="SumPowerConsumption,SumPowerConsumptionTest,SumPowerConsumptiontest1"
         Iterator<String> keys = config.keySet().iterator();
         while (keys.hasNext()) {
 
@@ -431,7 +438,7 @@ public class RRD4jService implements QueryablePersistenceService {
 
         for (RrdDefConfig rrdDef : rrdDefs.values()) {
             if (rrdDef.isValid()) {
-                logger.debug("Created {}", rrdDef);
+                logger.warn("ptro: Created {}", rrdDef);
             } else {
                 logger.info("Removing invalid definition {}", rrdDef);
                 rrdDefs.remove(rrdDef.name);
@@ -472,6 +479,7 @@ public class RRD4jService implements QueryablePersistenceService {
             isInitialized = false;
         }
 
+		// ptro doc: Sum.def="GAUGE,60,U,U,60"
         public void setDef(String defString) {
             String[] opts = defString.split(",");
             if (opts.length != 5) { // check if correct number of parameters
@@ -512,6 +520,8 @@ public class RRD4jService implements QueryablePersistenceService {
             return;
         }
 
+
+		// ptro doc: Sum.archives="TOTAL,.5,1,480:TOTAL,.5,3,360:TOTAL,.5,14,644:TOTAL,.5,60,720:TOTAL,.5,720,730:TOTAL,.5,10080,520"
         public void addArchives(String archivesString) {
             String splitArchives[] = archivesString.split(":");
             for (String archiveString : splitArchives) {
@@ -544,6 +554,7 @@ public class RRD4jService implements QueryablePersistenceService {
             }
         }
 
+		// ptro Doc: openhab.items="CurrentPowerConsumption2,WeatherInformation_Temperature,WeatherInformation_Humidity"
         public void addItems(String itemsString) {
             String splitItems[] = itemsString.split(",");
             for (String item : splitItems) {
@@ -614,4 +625,4 @@ public class RRD4jService implements QueryablePersistenceService {
             return t;
         }
     }
-}
+}	
