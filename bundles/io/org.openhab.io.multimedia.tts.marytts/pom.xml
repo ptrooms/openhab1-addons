@@ -2,6 +2,18 @@
 
   <modelVersion>4.0.0</modelVersion>
 
+    <!-- 30jan22 updated as dependency https://bintray.com/artifact/download/openhab/3rd/ no longer exists to retrieve missing libraries
+        replace https://bintray.com/artifact/download/openhab/3rd/
+		to 		https://github.com/ptrooms/openhab.dependencies/raw/qnap
+
+		This to recolve forced (missing) libbary download.
+                
+		Note: locally tested with contents on by http://192.168.1.8/openhab/3rd/
+		on Git we can accomplish the same by  using raw download from branch e.g.:
+			https://github.com/ptrooms/openhab.dependencies/raw/qnap/freetts-1.0.jar
+			https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/freetts-de-1.0.jar
+     --> 
+
   <parent>
     <groupId>org.openhab.bundles</groupId>
     <artifactId>io</artifactId>
@@ -42,7 +54,7 @@
               <artifactId>freetts</artifactId>
               <version>1.0</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/freetts-1.0.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/freetts-1.0.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -51,7 +63,7 @@
               <artifactId>freetts-de</artifactId>
               <version>1.0</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/freetts-de-1.0.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/freetts-de-1.0.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -60,7 +72,7 @@
               <artifactId>freetts-en_us</artifactId>
               <version>1.0</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/freetts-en_us-1.0.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/freetts-en_us-1.0.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -69,7 +81,7 @@
               <artifactId>sgt</artifactId>
               <version>3.0</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/sgt-3.0.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/sgt-3.0.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -78,7 +90,7 @@
               <artifactId>jtok-core</artifactId>
               <version>1.9.1</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/jtok-core-1.9.1.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/jtok-core-1.9.1.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -87,7 +99,7 @@
               <artifactId>mwdumper</artifactId>
               <version>1.16</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/mwdumper-1.16.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/mwdumper-1.16.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -96,7 +108,7 @@
               <artifactId>emotionml-checker-java</artifactId>
               <version>1.0-SNAPSHOT</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/emotionml-checker-java-1.0-SNAPSHOT.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/emotionml-checker-java-1.0-SNAPSHOT.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -105,7 +117,7 @@
               <artifactId>opennlp-maxent</artifactId>
               <version>3.0.1-incubating</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/opennlp-maxent-3.0.1-incubating.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/opennlp-maxent-3.0.1-incubating.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -114,7 +126,7 @@
               <artifactId>opennlp-tools</artifactId>
               <version>1.5.1-incubating</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/opennlp-tools-1.5.1-incubating.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/opennlp-tools-1.5.1-incubating.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -123,7 +135,7 @@
               <artifactId>marytts-lang-de</artifactId>
               <version>5.1-SNAPSHOT</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/marytts-lang-de-5.1-SNAPSHOT.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/marytts-lang-de-5.1-SNAPSHOT.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -132,7 +144,7 @@
               <artifactId>marytts-lang-en</artifactId>
               <version>5.1-SNAPSHOT</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/marytts-lang-en-5.1-SNAPSHOT.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/marytts-lang-en-5.1-SNAPSHOT.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -141,7 +153,7 @@
               <artifactId>voice-bits1-hsmm</artifactId>
               <version>5.0-SNAPSHOT</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/voice-bits1-hsmm-5.0-SNAPSHOT.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/voice-bits1-hsmm-5.0-SNAPSHOT.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -150,7 +162,7 @@
               <artifactId>voice-bits3-hsmm</artifactId>
               <version>5.0-SNAPSHOT</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/voice-bits3-hsmm-5.0-SNAPSHOT.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/voice-bits3-hsmm-5.0-SNAPSHOT.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
@@ -159,7 +171,7 @@
               <artifactId>voice-cmu-slt-hsmm</artifactId>
               <version>5.0</version>
               <packaging>jar</packaging>
-              <downloadUrl>https://bintray.com/artifact/download/openhab/3rd/marytts/voice-cmu-slt-hsmm-5.0.jar</downloadUrl>
+              <downloadUrl>https://github.com/ptrooms/openhab.dependencies/raw/qnap/marytts/voice-cmu-slt-hsmm-5.0.jar</downloadUrl>
               <force>true</force>
             </artifactItem>
 
