@@ -9,3 +9,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# ignore saved developement results for comparison ptro 03mar24
+target.save/
+target_save30jul22/
+target.copy/
+compile-debug-03mar24.txt
+compile-debug_skips-03mar24.txt
+effective_pom.txt
+

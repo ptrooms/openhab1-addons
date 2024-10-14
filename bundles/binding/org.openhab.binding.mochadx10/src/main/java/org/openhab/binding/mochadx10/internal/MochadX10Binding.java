@@ -222,7 +222,9 @@ public class MochadX10Binding extends AbstractBinding<MochadX10BindingProvider> 
     }
 
     @Override
-    public void updated(Dictionary<String, ?> properties) throws ConfigurationException {
+
+    public void updated(Dictionary properties) throws ConfigurationException {
+    // public void updated(Dictionary<String, ?> properties) throws ConfigurationException {
         if (properties != null) {
             String ip = (String) properties.get("hostIp");
             if (StringUtils.isNotBlank(ip)) {

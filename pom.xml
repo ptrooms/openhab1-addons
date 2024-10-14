@@ -138,6 +138,7 @@
             <id>p2-smarthome-release</id>
             <!-- <url>http://download.eclipse.org/smarthome/updates-release/${esh.releaseVersion}</url> -->
 			<!-- <url>http://192.168.1.8/openhab/${esh.releaseVersion}</url> -->
+			<!-- fix 30jan22 ptro to use my own repository on my qnap -->
 			<url>http://192.168.1.8/openhab/${esh.version}</url>
             <layout>p2</layout>
             <releases>

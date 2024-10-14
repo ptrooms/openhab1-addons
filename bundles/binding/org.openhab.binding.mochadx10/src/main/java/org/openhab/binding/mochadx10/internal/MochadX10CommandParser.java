@@ -55,9 +55,10 @@ public class MochadX10CommandParser {
      * For example:
      * 
      * 02/22 15:50:02 Rx PL HouseUnit: B3
+     * 07/30 22:59:03 Tx PL HouseUnit: O7		
      */
     private static final Pattern HOUSEUNIT_COMMAND = Pattern
-            .compile("[0-9]{2}/[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\sRx\\s((RF)|(PL))\\sHouseUnit:\\s"
+            .compile("[0-9]{2}/[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\s(Rx|Tx)\\s((RF)|(PL))\\sHouseUnit:\\s"
                     + "(?<houseCode>[A-P])(?<unitCode>[0-9]*)(\\sFunc:\\s(?<command>.+))?");
 
     /**
@@ -68,7 +69,7 @@ public class MochadX10CommandParser {
      * 02/22 15:50:08 Rx PL House: B Func: Bright(13)
      */
     private Pattern HOUSE_COMMAND = Pattern
-            .compile("[0-9]{2}/[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\sRx\\s((RF)|(PL))\\sHouse:\\s"
+            .compile("[0-9]{2}/[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\s(Rx|Tx)\\s((RF)|(PL))\\sHouse:\\s"
                     + "(?<houseCode>[A-P])\\sFunc:\\s(?<command>.+)");
 
     /**
