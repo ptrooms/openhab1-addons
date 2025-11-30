@@ -71,7 +71,7 @@ public class RRD4jService implements QueryablePersistenceService {
 
     private ConcurrentHashMap<String, RrdDefConfig> rrdDefs = new ConcurrentHashMap<String, RrdDefConfig>();
 
-    private static final String DATASOURCE_STATE = "state";	 // ptro: name of rrd datasource info fixed to value/string/contents"state" 
+    private static final String DATASOURCE_STATE = "state";
 
     public final static String DB_FOLDER = getUserPersistenceDataFolder() + File.separator + "rrd4j";
 
