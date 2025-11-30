@@ -18,7 +18,7 @@ distribution/openhabhome/etc/rrd4j/*.rrd
 features/*/src/main/history
 itemDump.txt
 
-# ptreo modified for local developement
+# ptro modified for local developement
 ptro_*.*
 
 # IntelliJ files
