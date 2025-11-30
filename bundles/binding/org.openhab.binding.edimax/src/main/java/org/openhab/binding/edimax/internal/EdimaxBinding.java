@@ -71,25 +71,26 @@ public class EdimaxBinding extends AbstractActiveBinding<EdimaxBindingProvider> 
 				EdimaxBindingConfiguration config = ((EdimaxGenericBindingProvider) provider).getConfig(itemName);
 				String macAddress = config.getMacAddress();
 				String deviceIP = getDeviceIP(macAddress);
-				logger.error("Device MAC=" + macAddress + " and  IP=" + deviceIP );  // 15okt24 Ptro debugging why config is not passed
 
-				// if (deviceIP === null) {				// 15okt24 ptro == null
-				if (deviceIP.equals(null)) {
+				// if (deviceIP == null) {				// 15okt24 ptro == null
+				if ( !( deviceIP != null) )  {
 					logger.error("Device with MAC: " + macAddress
 							+ " not found/discovered.");
 					continue;
+				} else {
+					logger.debug("Device found MAC=" + macAddress + " and IP2=" + deviceIP );  // 15okt24 Ptro debugging why config is not passed
 				}
 
 				// if type is null, default type is STATE
 				EdimaxBindingConfiguration.Type type = config.getType();
 
-				// if (type === null) {						// 15okt24 ptro == null
-				if (type.equals(null)) {
+				// if (type == null) {						// 15okt24 ptro == null
+				if ( !(type != null) ) {
 					type = Type.STATE;
 				}
 
 				State newState = null;
-				logger.debug("execute:" + type + " on " + deviceIP + " with password " 
+				logger.debug("execute: " + type + " on " + deviceIP + " with password " 
 							+ config.getPassword() + ", ip=" + getDeviceIP(macAddress) ) ;  // 15okt24 Ptro test edimax access
 
 				// If finally block is present, it will be executed followed by the default handling mechanism. 
@@ -130,7 +131,7 @@ public class EdimaxBinding extends AbstractActiveBinding<EdimaxBindingProvider> 
 					// 2024-10-15 21:41:36.108 [ERROR] [inding.edimax.internal.EdimaxBinding] - Error in communication with device. Device's MAC: 74DA384B1757. Cannot get update from device.                   
 
 					//  createSender(config).getState(deviceIP); --> we get a HTTP 401 see below for exact error message
-					// java.io.IOException: Server returned HTTP response code: 401 for URL: http://192.168.1.130:10000/smartplug.cgi 
+					// java.io.IOException: Server returned HTTP response code: 401 for URL: http://192.168.1.114:10000/smartplug.cgi 
 
 					logger.error(
 							"Error in communication with device. Device's MAC: "
@@ -161,9 +162,9 @@ public class EdimaxBinding extends AbstractActiveBinding<EdimaxBindingProvider> 
 	private HTTPSend createSender(EdimaxBindingConfiguration config) {
 		String password = config.getPassword();
         // password = "edimax001"; 					// 15okt24 ptro force password
-		// if (password === null) {
+		// if (password == null) {
         logger.debug("CreateSender HTTPSend password =" + password );  // 15okt24 Ptro debugging why config is not passed
-		if (password.equals(null)) {
+		if ( !(password != null) ) {
 			return new HTTPSend();				// HTTPSend.java
 		} else {
 			return new HTTPSend(password);		// HTTPSend.java
@@ -245,8 +246,8 @@ public class EdimaxBinding extends AbstractActiveBinding<EdimaxBindingProvider> 
 			EdimaxBindingConfiguration config = ((EdimaxGenericBindingProvider) provider)
 					.getConfig(itemName);
 			String deviceIP = getDeviceIP(config.getMacAddress());
-			// if (deviceIP === null) {			// 15okt24 ptro == null
-			if (deviceIP.equals(null)) {
+			// if (deviceIP == null) {			// 15okt24 ptro == null
+			if ( !( deviceIP != null) ) {
 				logger.debug("No real device for item: " + itemName + " found.");
 				continue;
 			}
@@ -312,14 +313,14 @@ see: [https://http.dev/401] , this returns: the WWW-Authenticate response header
 error messages:
 
 2024-10-15 04:10:00.622 [DEBUG] [inding.edimax.internal.EdimaxBinding] - getPassword: return password=edimax001. 
- 024-10-15 04:10:00.623 [DEBUG] [inding.edimax.internal.EdimaxBinding] (--> HTTPSend) complete=http://192.168.1.130:10000/smartplug.cgiurlParameters=<?xml version="1.0" encoding="UTF8"?>
+ 024-10-15 04:10:00.623 [DEBUG] [inding.edimax.internal.EdimaxBinding] (--> HTTPSend) complete=http://192.168.1.114:10000/smartplug.cgiurlParameters=<?xml version="1.0" encoding="UTF8"?>
 <SMARTPLUG id="edimax"><CMD id="get"><Device.System.Power.State/></CMD></SMARTPLUG> 
 
 2024-10-15 04:10:00.624 [DEBUG] [inding.edimax.internal.EdimaxBinding] - basicAuth=admin:edimax001, cod64=Basic YWRtaW46ZWRpbWF4MDAx 
-2024-10-15 04:10:00.625 [DEBUG] [inding.edimax.internal.EdimaxBinding] - HttpURLConnection=sun.net.www.protocol.http.HttpURLConnection:http://192.168.1.130:10000/smartplug.cgi 
+2024-10-15 04:10:00.625 [DEBUG] [inding.edimax.internal.EdimaxBinding] - HttpURLConnection=sun.net.www.protocol.http.HttpURLConnection:http://192.168.1.114:10000/smartplug.cgi 
 
 2024-10-15 04:10:00.658 [ERROR] [inding.edimax.internal.EdimaxBinding] - Error in communication with device. Device's MAC: 74DA384B1757. Cannot get update from device. 
-java.io.IOException: Server returned HTTP response code: 401 for URL: http://192.168.1.130:10000/smartplug.cgi 
+java.io.IOException: Server returned HTTP response code: 401 for URL: http://192.168.1.114:10000/smartplug.cgi 
         at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1876) ~[?:?] 
         at sun.net.www.protocol.http.HttpURLConnection.access$200(HttpURLConnection.java:91) ~[?:?] 
         at sun.net.www.protocol.http.HttpURLConnection$9.run(HttpURLConnection.java:1466) ~[?:?] 
@@ -334,7 +335,7 @@ java.io.IOException: Server returned HTTP response code: 401 for URL: http://192
         at org.openhab.core.binding.AbstractActiveBinding$BindingActiveService.execute(AbstractActiveBinding.java:144) [218:org.openhab.core.compat1x:2.4.0] 
         at org.openhab.core.service.AbstractActiveService$RefreshThread.run(AbstractActiveService.java:166) [218:org.openhab.core.compat1x:2.4.0] 
 
-2024-10-15 04:10:30.661 [DEBUG] [inding.edimax.internal.EdimaxBinding] - getDeviceIP Mac=74DA384B1757, DeviceIP=192.168.1.130 
-2024-10-15 04:10:30.662 [ERROR] [inding.edimax.internal.EdimaxBinding] - Device MAC=74DA384B1757 and  IP=192.168.1.130 
+2024-10-15 04:10:30.661 [DEBUG] [inding.edimax.internal.EdimaxBinding] - getDeviceIP Mac=74DA384B1757, DeviceIP=192.168.1.114 
+2024-10-15 04:10:30.662 [ERROR] [inding.edimax.internal.EdimaxBinding] - Device MAC=74DA384B1757 and  IP=192.168.1.114 
 2024-10-15 04:10:30.663 [DEBUG] [inding.edimax.internal.EdimaxBinding] - getPassword: return password=edimax001
 */

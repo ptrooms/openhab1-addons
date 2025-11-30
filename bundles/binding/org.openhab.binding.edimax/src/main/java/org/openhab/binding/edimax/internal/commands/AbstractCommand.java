@@ -275,7 +275,7 @@ public abstract class AbstractCommand<T extends Object> {
 	/**
 	 * HELPER.
 	 */
-	public static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF8\"?>\r\n";
+	public static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n"; // was UTF8
 
 	/**
 	 * XML Helper.
