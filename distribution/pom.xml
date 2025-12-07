@@ -833,6 +833,12 @@
 			<groupId>org.openhab.binding</groupId>
 			<artifactId>org.openhab.binding.ecobee</artifactId>
 			<version>${project.version}</version>
+		      <type>jar</type>
+		    </dependency>
+		<dependency>
+		      <groupId>org.openhab.binding</groupId>
+		      <artifactId>org.openhab.binding.edimax</artifactId>
+			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>

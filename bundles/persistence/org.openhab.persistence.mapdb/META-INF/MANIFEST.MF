@@ -7,6 +7,7 @@ Bundle-Vendor: openHAB.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.apache.commons.io,
  org.apache.commons.lang,
+ org.eclipse.smarthome.ui.items,
  org.openhab.core.items,
  org.openhab.core.library.items,
  org.openhab.core.library.types,

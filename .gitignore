@@ -36,3 +36,7 @@ ptro_*.*
 .metadata
 *.iml
 *.ipr
+
+*.MF2
+target1/
+target2/
