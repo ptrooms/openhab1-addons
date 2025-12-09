@@ -1,3 +1,4 @@
+ptro-comments: Maven require resolution optional,for org.openhab.model.sitemap org.openhab.ui.chart and org.openhab.ui.items
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: openHAB RRD4j Persistence Bundle

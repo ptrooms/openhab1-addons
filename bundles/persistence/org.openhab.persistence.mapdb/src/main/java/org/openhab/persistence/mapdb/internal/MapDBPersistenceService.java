@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.mapdb.BTreeMap;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.Serializer;
@@ -109,10 +110,35 @@ public class MapDBPersistenceService implements QueryablePersistenceService {
             }
         }
 
+        // note: mapdb is created using kotline and build via gradle.
         File dbFile = new File(DB_FOLDER_NAME, DB_FILE_NAME);
         db = DBMaker.newFileDB(dbFile).closeOnJvmShutdown().make();
-        Serializer<MapDBItem> serializer = new MapDBitemSerializer();
+        Serializer<MapDBItem> serializer = new MapDBitemSerializer();   
+        // file:///home/pafoxp/code-openhab/git_addons_S114/bundles/persistence/org.openhab.persistence.mapdb/src/main/java/org/openhab/persistence/mapdb/internal/MapDBitemSerializer.java
         map = db.createTreeMap("itemStore").valueSerializer(serializer).makeOrGet();
+                    
+            /*
+
+             public HTreeMapMaker valueSerializer(Serializer<?> valueSerializer) {
+                    this.valueSerializer = valueSerializer;
+                    return this;
+
+                // class: DB$BTreeMapMaker.class ()
+                      public <K, V> HTreeMap<K, V> makeOrGet() {
+                        synchronized(DB.this) {
+                            return DB.this.catGet(this.name + ".type") == null ? this.make() : DB.this.getHashMap(this.name);
+                        }
+
+                // file:///home/pafoxp/code-openhab/code-mapdb/src/main/java/org/mapdb/DB.java
+                public <K,V> BTreeMap<K,V> makeOrGet(){
+                    synchronized(DB.this){
+                    //TODO add parameter check
+                    return (BTreeMap<K, V>) (catGet(name+".type")==null?
+                            make():getTreeMap(name));
+                }
+            */
+
+        
         scheduleJob();
         logger.debug("mapdb persistence service is now activated");
     }
