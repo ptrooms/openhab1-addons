@@ -8,6 +8,7 @@
  */
 package org.openhab.persistence.mapdb.internal;
 
+// file:///home/pafoxp/.m2/repository/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.repeatSecondlyForever;
 import static org.quartz.TriggerBuilder.newTrigger;
@@ -20,8 +21,9 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+// file:///home/pafoxp/.m2/repository/p2/osgi/bundle/org.apache.commons.lang/2.6.0.v201205030909/org.apache.commons.lang-2.6.0.v201205030909.jar
 import org.apache.commons.lang.StringUtils;
-import org.mapdb.BTreeMap;
+// import org.mapdb.BTreeMap;  // never used
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.Serializer;
@@ -82,7 +84,7 @@ public class MapDBPersistenceService implements QueryablePersistenceService {
     private static Map<String, MapDBItem> map;
 
     public void activate(final BundleContext bundleContext, final Map<String, Object> config) {
-        logger.debug("mapdb persistence service is being activated");
+        logger.debug("mapdb persistence service is being activated on file " + DB_FILE_NAME);
 
         String commitIntervalString = (String) config.get("commitinterval");
         if (StringUtils.isNotBlank(commitIntervalString)) {
@@ -111,8 +113,11 @@ public class MapDBPersistenceService implements QueryablePersistenceService {
         }
 
         // note: mapdb is created using kotline and build via gradle.
-        File dbFile = new File(DB_FOLDER_NAME, DB_FILE_NAME);
-        db = DBMaker.newFileDB(dbFile).closeOnJvmShutdown().make();
+        // doc/api: file:///home/pafoxp/code-openhab/code-mapdb/ptro/javadoc/index.html
+        // html file:////home/pafoxp/code-openhab/code-mapdb/ptro/javadoc/index.html
+        File dbFile = new File(DB_FOLDER_NAME, DB_FILE_NAME);           // package java.io;
+        db = DBMaker.newFileDB(dbFile).closeOnJvmShutdown().make();     // release on JVMshutdown !!!
+        
         Serializer<MapDBItem> serializer = new MapDBitemSerializer();   
         // file:///home/pafoxp/code-openhab/git_addons_S114/bundles/persistence/org.openhab.persistence.mapdb/src/main/java/org/openhab/persistence/mapdb/internal/MapDBitemSerializer.java
         map = db.createTreeMap("itemStore").valueSerializer(serializer).makeOrGet();
@@ -138,17 +143,27 @@ public class MapDBPersistenceService implements QueryablePersistenceService {
                 }
             */
 
-        
+
         scheduleJob();
-        logger.debug("mapdb persistence service is now activated");
+        logger.warn("mapdb persistence service is now activated");
     }
 
     public void deactivate(final int reason) {
-        logger.debug("mapdb persistence service deactivated");
+        logger.warn("mapdb persistence service deactivated"
+                + "on file "  + DB_FILE_NAME
+                + "reason="   + reason  );
         if (db != null) {
             db.close();
+            logger.warn("mapdb persistence file " + DB_FILE_NAME + " closed.");
         }
         cancelAllJobs();
+        // OSGi-enforce GC , as per DeepSeek 10dec25 this will free the filedescriptor after close
+        for (int i = 0; i < 3; i++) {
+            logger.error("MapDB doing GC cleanup...."); // https://www.baeldung.com/java-system-gc
+            System.gc();            // https://docs.oracle.com/javase/8/docs/api/java/lang/System.html
+            System.runFinalization();
+            try { Thread.sleep(200); } catch (InterruptedException e) {}
+        }        
     }
 
     @Override

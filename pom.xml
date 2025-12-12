@@ -60,14 +60,6 @@
   </issueManagement>
 
   <distributionManagement>
-    <repository>
-      <id>bintray</id>
-      <url>https://api.bintray.com/maven/openhab/mvn/openhab1-addons/;publish=1;override=1</url>
-    </repository>
-    <snapshotRepository>
-      <id>jfrog</id>
-      <url>https://openhab.jfrog.io/openhab/libs-snapshot-local</url>
-    </snapshotRepository>
   </distributionManagement>
 
   <properties>
@@ -85,115 +77,27 @@
 
   <repositories>
 
-    <!-- releases -->
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>jcenter</id>
-      <name>JCenter Repository</name>
-      <url>https://jcenter.bintray.com/</url>
-    </repository>
-
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>openhab-artifactory-release</id>
-      <name>JFrog Artifactory Repository</name>
-      <url>https://openhab.jfrog.io/openhab/libs-release</url>
-    </repository>
-
-    <!-- snapshots -->
-    <repository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-      <id>openhab-artifactory-snapshot</id>
-      <name>JFrog Artifactory Repository</name>
-      <url>https://openhab.jfrog.io/openhab/libs-snapshot</url>
-    </repository>
-
-<!--SmartHome p2 repository
-    <repository>
-      <id>p2x-smarthome</id>
-      <url>https://openhab.jfrog.io/openhab/eclipse-smarthome-stable</url>
-      <layout>p2</layout>
-    </repository>
--->
       <!-- SmartHome p2 release repository -->
         <repository>
             <id>p2-smarthome-release</id>
             <!-- <url>http://download.eclipse.org/smarthome/updates-release/${esh.releaseVersion}</url> -->
-			<!-- <url>http://192.168.1.8/openhab/${esh.releaseVersion}</url> -->
-			<!-- fix 30jan22 ptro to use my own repository on my qnap -->
-			<url>http://192.168.1.8/openhab/${esh.version}</url>
+			      <!-- <url>http://192.168.1.8/openhab/${esh.releaseVersion}</url> -->
+      			<!-- fix 30jan22 ptro to use my own repository on my qnap -->
+			      <url>http://192.168.1.8/openhab/${esh.version}</url>
             <layout>p2</layout>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </releases>
             <snapshots>
-                <enabled>false</enabled>
+                <!-- <enabled>false</enabled> -->
+                <enabled>true</enabled>
             </snapshots>
         </repository>
 
 
-
-    <!-- openHAB core p2 repository -->
-    <repository>
-      <id>p2-openhab-core</id>
-      <url>https://dl.bintray.com/openhab/p2/openhab-core/2.0.0</url>
-      <layout>p2</layout>
-    </repository>
-
-    <!-- openHAB dependencies p2 repository -->
-    <repository>
-      <id>p2-openhab-deps-repo</id>
-      <url>https://dl.bintray.com/openhab/p2/openhab-deps-repo/${ohdr.version}</url>
-      <layout>p2</layout>
-    </repository>
-
   </repositories>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>jcenter</id>
-      <name>JCenter Repository</name>
-      <url>https://jcenter.bintray.com/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>artifactory</id>
-      <name>JFrog Artifactory Repository</name>
-      <url>https://openhab.jfrog.io/openhab/libs-release</url>
-    </pluginRepository>
-  </pluginRepositories>
 
   <build>
 
@@ -274,7 +178,7 @@
         </plugin>
 
         <!-- we deactivate the static analysis tool as the openHAB 1 code does not comply to these rules -->
-        <plugin>
+        <!-- <plugin>
           <groupId>org.openhab.tools</groupId>
           <artifactId>static-code-analysis</artifactId>
           <executions>
@@ -282,7 +186,7 @@
               <phase>none</phase>
             </execution>
           </executions>
-        </plugin>
+        </plugin> -->
       </plugins>
     </pluginManagement>
   </build>

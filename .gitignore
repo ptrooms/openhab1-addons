@@ -40,3 +40,9 @@ ptro_*.*
 *.MF2
 target1/
 target2/
+target3/
+
+#supress 12dec25
+*.wip
+*.org
+*.new

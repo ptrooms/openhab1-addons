@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.mapdb.Serializer;
+// <classpathentry kind="lib" path="/home/pafoxp/.m2/repository/org/openhab/bundles/org.openhab.core1/1.14.0-SNAPSHOT/org.openhab.core1-1.14.0-SNAPSHOT.jar"/>
 import org.openhab.core.library.types.DateTimeType;
 import org.openhab.core.library.types.DecimalType;
 import org.openhab.core.library.types.HSBType;
