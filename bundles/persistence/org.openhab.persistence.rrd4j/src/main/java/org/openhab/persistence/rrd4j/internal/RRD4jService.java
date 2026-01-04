@@ -522,6 +522,7 @@ public class RRD4jService implements QueryablePersistenceService {
 
 
 		// ptro doc: Sum.archives="TOTAL,.5,1,480:TOTAL,.5,3,360:TOTAL,.5,14,644:TOTAL,.5,60,720:TOTAL,.5,720,730:TOTAL,.5,10080,520"
+        // ptro doc: ... AVERAGE,0.5,1,480:AVERAGE,0.5,4,360:AVERAGE,0.5,14,644:AVERAGE,0.5,60,720:AVERAGE,0.5,720,730:AVERAGE,0.5,10080,520
         public void addArchives(String archivesString) {
             String splitArchives[] = archivesString.split(":");
             for (String archiveString : splitArchives) {
@@ -530,7 +531,7 @@ public class RRD4jService implements QueryablePersistenceService {
                     logger.warn("invalid number of parameters {}: {}", name, archiveString);
                     return;
                 }
-                RrdArchiveDef arc = new RrdArchiveDef();
+                RrdArchiveDef arc = new RrdArchiveDef();        // see RRD4J api documentation [file:///home/pafoxp/code-rrd4j/target/apidocs/index.html]
 
                 if (opts[0].equals("AVERAGE")) {
                     arc.fcn = ConsolFun.AVERAGE;

@@ -5,4 +5,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/rrd4j-3.6-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
+	<!-- 02jan26 added to allow VSC resolve imports -->
+	<classpathentry kind="lib" path="/home/pafoxp/.m2/repository/org/osgi/org.osgi.framework/1.8.0/org.osgi.framework-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/home/pafoxp/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/home/pafoxp/.m2/repository/org/openhab/bundles/org.openhab.core1/1.14.0-SNAPSHOT/org.openhab.core1-1.14.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/pafoxp/.m2/repository/p2/osgi/bundle/org.apache.commons.lang/2.6.0.v201205030909/org.apache.commons.lang-2.6.0.v201205030909.jar"/>
+	<classpathentry kind="lib" path="/home/pafoxp/.m2/repository/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar"/>
 </classpath>
